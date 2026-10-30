@@ -328,7 +328,7 @@ body.measuring #gl { cursor: crosshair; }
   <div class="in">
     <span class="eyebrow">Standpoint · seat preview concept</span>
     <h1>Old Trafford, seat by seat</h1>
-    <p>Loading a 55,948-seat model with sightlines, zones and accessible platforms. Pick any seat, then sit in it before you book.</p>
+    <p>Old Trafford holds 74,158 people. This model has 55,849 of those seats so far, each with its sightline, zone and access info. Pick any seat, then sit in it before you book.</p>
     <div class="meter"><i id="loadBar" style="width:4%"></i></div>
     <span id="loadMsg">Loading stadium model…</span>
   </div>
@@ -352,7 +352,7 @@ body.measuring #gl { cursor: crosshair; }
 
   <aside id="finder" class="panel" aria-label="Find seats">
     <header>
-      <div><span class="eyebrow">Find seats</span><h2>Where do you want to sit?</h2></div>
+      <div><span class="eyebrow">Find seats</span><h2>Where do you want to sit?</h2><small class="capnote" style="display:block;margin-top:4px;font-size:11px;opacity:.7">Real capacity 74,158 · 55,849 seats modelled</small></div>
       <button id="finderToggle" aria-expanded="true">Hide</button>
     </header>
     <div id="finderBody">
@@ -449,7 +449,7 @@ body.measuring #gl { cursor: crosshair; }
       </div>
       <div class="field">
         <label for="occSel">Occupancy</label>
-        <select class="sel" id="occSel"><option value="full">Full house</option><option value="crowd">Tickets sold for this fixture</option></select>
+        <select class="sel" id="occSel"><option value="full">Full house (55,849 modelled seats)</option><option value="crowd">Tickets sold for this fixture</option></select>
       </div>
       <div id="fireBox" hidden>
         <div class="placeBox" id="placeBox">
@@ -852,7 +852,7 @@ async function loadAll() {
   P = new Float32Array(bin, 0, N * 4); MT = new Uint16Array(bin, N * 16, N * 4);
   CV = new Int16Array(bin, N * 24, N); OVH = new Uint16Array(bin, N * 26, N);
   TY = new Uint8Array(bin, N * 28, N); STEPS = new Uint8Array(bin, N * 29, N); ZONE = new Uint8Array(bin, N * 30, N); STANDOK = new Uint8Array(bin, N * 31, N);
-  setLoad(0.82, `Laying out ${N.toLocaleString('en-GB')} seats…`);
+  setLoad(0.82, `Laying out ${N.toLocaleString('en-GB')} of 74,158 seats…`);
   setupStadium(gltf.scene);
   await new Promise((r) => setTimeout(r, 20));
   deriveSeats(); buildSeats(); buildCrowd(); buildMatch(pg);
@@ -3084,7 +3084,7 @@ function updateDash(force) {
   else { status.textContent = fire && !SF.fire ? 'Place the fire' : 'Ready'; status.className = 'pill'; }
   const pct = (100 * c.safe / Math.max(1, sim.movers));
   $('#kSafe').textContent = pct.toFixed(pct > 99 || pct < 1 ? 1 : 0) + '%';
-  $('#kSafeN').textContent = `${c.safe.toLocaleString('en-GB')} of ${sim.movers.toLocaleString('en-GB')}` + (c.staying ? ` · ${c.staying.toLocaleString('en-GB')} stay seated` : '');
+  $('#kSafeN').textContent = `${c.safe.toLocaleString('en-GB')} of ${sim.movers.toLocaleString('en-GB')} modelled` + (c.staying ? ` · ${c.staying.toLocaleString('en-GB')} stay seated` : '');
   $('#kInside').textContent = c.inside.toLocaleString('en-GB');
   $('#kMoving').textContent = `${(c.moving).toLocaleString('en-GB')} moving · ${c.waiting.toLocaleString('en-GB')} not yet`;
   $('#kQueue').textContent = c.queued.toLocaleString('en-GB');
